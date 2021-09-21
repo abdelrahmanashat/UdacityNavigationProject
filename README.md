@@ -1,11 +1,13 @@
 # Udacity Reinforcement Learning Nano Degree Navigation Project
 
-In this project, we will implement a DQN (Deep Q-Network) agent with Unity's Banana Collector environment.
+In this project, we will implement a DQN (Deep Q-Network) agent to solve Unity's Banana Collector environment.
 
 ## 1. Environment Details: 
 In this project, we have to train an agent to navigate (and collect bananas!) in a large, square world. 
 
-![Banana World](https://camo.githubusercontent.com/b3ba13bafd8458e8c4fad71d8a06cb439821f8c1/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f766964656f2e756461636974792d646174612e636f6d2f746f706865722f323031382f4a756e652f35623161623462305f62616e616e612f62616e616e612e676966)
+<p align="center">
+  <img src="https://camo.githubusercontent.com/b3ba13bafd8458e8c4fad71d8a06cb439821f8c1/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f766964656f2e756461636974792d646174612e636f6d2f746f706865722f323031382f4a756e652f35623161623462305f62616e616e612f62616e616e612e676966" alt="drawing" width="400"/>
+</p>
 
 NOTE:
 
@@ -44,7 +46,7 @@ _(For Windows users)_ Check out this link if you need help with determining if y
 _(For AWS)_ If you'd like to train the agent on AWS (and have not enabled a virtual screen), then please use this link to obtain the "headless" version of the environment. You will not be able to watch the agent without enabling a virtual screen, but you will be able to train the agent. (To watch the agent, you should follow the instructions to enable a virtual screen, and then download the environment for the Linux operating system above.)
 
 ## 3. Explore the Environment
-After you have followed the instructions above, open `Navigation.ipynb` (located in the `p1_navigation/` folder in the DRLND GitHub repository) and follow the instructions to learn how to use the Python API to control the agent.
+After you have followed the instructions above, open `Navigation.ipynb` located in the `p1_navigation/` folder and follow the instructions to learn how to use the Python API to control the agent.
 
 ## 4. Implementation Details
 To solve this environment, we used Reinforcement Learning algorithms to train an agent to collect the yellow bananas not the blue ones. In particulat, we used the DQN (Deep Q-Network) algorithm. DQN uses machine learning algorithms, such as neural networks, as a function approximator to the Q-table. We briefly explain these concepts in this section.
@@ -86,6 +88,8 @@ In our environment's case, there are `37 states` and `4 actions`. The input laye
   <em>Fig.3: Neural Network Architecture Used in Project</em>
 </p>
 
+We use 2 neural networks with the same architecture to be able to have 2 sets of weights: __*w*__ and __*w<sup>-</sup>*__. This will be illustrated in the _Fixed Q-Targets_ section.
+
 The hyperparameters are:
 * Activation function: `relu`.
 * Batch size: `64`.
@@ -112,7 +116,7 @@ In Q-Learning, we update a guess with a guess, and this can potentially lead to 
 where __*w<sup>-</sup>*__ are the weights of a separate target network that are not changed during the learning step, and __*(S, A, R, S')*__ is an experience tuple.
 
 The hyperparameters are:
-* Discount factor &gamma; : `0.99`
+* Discount factor &gamma;: `0.99`.
 
 #### Double Q-Learning
 The popular Q-learning algorithm is known to overestimate action values under certain conditions. It was not previously known whether, in practice, such overestimations are common, whether they harm performance, and whether they can generally be prevented. Double Q-learning algorithm show that the resulting algorithm not only reduces the observed overestimations, as hypothesized, but that this also leads to much better performance.
@@ -132,3 +136,29 @@ We replace __*Y<sub>t</sub><sup>Q</sup>*__ with this equation:
 
 Notice that the selection of the action, in the argmax, is still due to the online weights __*w<sub>t</sub>*__. This means that, as in Q-learning, we are still estimating the value of the greedy policy according to the current values, as defined by __*w<sub>t</sub>*__. However, we use the second set of weights __*w<sub>t</sub><sup>-</sup>*__ to fairly evaluate the value of this policy. This second set of weights can be updated symmetrically by switching the roles of __*w<sub>t</sub>*__ and __*w<sub>t</sub><sup>-</sup>*__.
 
+For more information about Double Q-Learning, read the paper [here](https://arxiv.org/abs/1509.06461).
+
+#### Soft Update of Target Network
+Instead of updating the target network parameters every number of steps. The target network parameters are updated at every step decayed by a parameter &tau;:
+<p align="center">
+  w<sub>t</sub><sup>-</sup> = &tau; w<sub>t</sub> + (1 - &tau;) w<sub>t</sub><sup>-</sup>
+</p>
+
+The hyperparameters are:
+* Soft update parameter &tau;: `0.001`.
+
+### Plot of Rewards
+For the environment to be solved, the average reward over 100 episodes must reach at least 13. The implementation provided here needed 458 episodes to be completed. The plot of rewards is shown in _fig.4_.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/47497135/134096113-5b978d26-8f9a-4536-9316-75f22dd32170.png" alt="drawing" width="400"/>
+</p>
+<p align="center">
+  <em>Fig.4: Rewards Plot</em>
+</p>
+
+### Ideas for Future Work
+Some additional features could be added to provide better performance:
+* __Prioritized Experience Replay:__ Instead of randomly choosing the expriences, we choose them based on how much they affect our learning process. For more information read this paper [here](https://arxiv.org/abs/1511.05952).
+* __Dueling DQN:__ Instead of having one output layer representing the action values, we have 2 output layers representing state values and advantage values. Combining both results the action values. For more information read this paper [here](https://arxiv.org/abs/1511.06581).
+* __Using images:__ Instead of states, we use the image of the game itself as an input to the neural network. We then have to introduce some changes to the architecture of the netwok. We could use convolutional layers. This will be a more challenging problem.
