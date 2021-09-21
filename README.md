@@ -46,7 +46,7 @@ _(For Windows users)_ Check out this link if you need help with determining if y
 _(For AWS)_ If you'd like to train the agent on AWS (and have not enabled a virtual screen), then please use this link to obtain the "headless" version of the environment. You will not be able to watch the agent without enabling a virtual screen, but you will be able to train the agent. (To watch the agent, you should follow the instructions to enable a virtual screen, and then download the environment for the Linux operating system above.)
 
 ## 3. Explore the Environment
-After you have followed the instructions above, open `Navigation.ipynb` located in the `p1_navigation/` folder and follow the instructions to learn how to use the Python API to control the agent.
+After you have followed the instructions above, open `Navigation.ipynb` located in the `project_navigation/` folder and follow the instructions to learn how to use the Python API to control the agent. The saved weights file is named `checkpoint.pth` located in the `project_navigation/` folder.
 
 ## 4. Implementation Details
 To solve this environment, we used Reinforcement Learning algorithms to train an agent to collect the yellow bananas not the blue ones. In particulat, we used the DQN (Deep Q-Network) algorithm. DQN uses machine learning algorithms, such as neural networks, as a function approximator to the Q-table. We briefly explain these concepts in this section.
@@ -148,10 +148,10 @@ The hyperparameters are:
 * Soft update parameter &tau;: `0.001`.
 
 ### Plot of Rewards
-For the environment to be solved, the average reward over 100 episodes must reach at least 13. The implementation provided here needed 458 episodes to be completed. The plot of rewards is shown in _fig.4_.
+For the environment to be solved, the average reward over 100 episodes must reach at least 13. The implementation provided here needed just `501 episodes` to be completed! The plot of rewards is shown in _fig.4_.
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/47497135/134096113-5b978d26-8f9a-4536-9316-75f22dd32170.png" alt="drawing" width="400"/>
+  <img src="https://user-images.githubusercontent.com/47497135/134100064-bfaaeedc-b14b-4a82-a426-55129f7b798e.png" alt="drawing" width="400"/>
 </p>
 <p align="center">
   <em>Fig.4: Rewards Plot</em>
