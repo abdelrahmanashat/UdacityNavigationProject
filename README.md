@@ -1,4 +1,4 @@
-# Udacity Reinforcement Learning Nano Degree Navigation Project
+# Udacity Reinforcement Learning Nano Degree: Navigation Project
 
 In this project, we will implement a DQN (Deep Q-Network) agent to solve Unity's Banana Collector environment.
 
