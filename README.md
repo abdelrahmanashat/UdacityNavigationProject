@@ -46,7 +46,7 @@ _(For Windows users)_ Check out this link if you need help with determining if y
 _(For AWS)_ If you'd like to train the agent on AWS (and have not enabled a virtual screen), then please use this link to obtain the "headless" version of the environment. You will not be able to watch the agent without enabling a virtual screen, but you will be able to train the agent. (To watch the agent, you should follow the instructions to enable a virtual screen, and then download the environment for the Linux operating system above.)
 
 ## 3. Explore the Environment
-After you have followed the instructions above, open `Navigation.ipynb` located in the `project_navigation/` folder and follow the instructions to learn how to use the Python API to control the agent. The saved weights file is named `checkpoint.pth` located in the `project_navigation/` folder.
+After you have followed the instructions above, open `Navigation.ipynb` located in the `project_navigation/` folder and follow the instructions to learn how to use the Python API to control the agent. The saved weights file is named `checkpoint.pth` located in the `project_navigation/` folder. There is another saved weights file named `BestCheckpoint.pth` that is the result of a 2000 episodes run with an average score of 15.82.
 
 ## 4. Implementation Details
 To solve this environment, we used Reinforcement Learning algorithms to train an agent to collect the yellow bananas not the blue ones. In particulat, we used the DQN (Deep Q-Network) algorithm. DQN uses machine learning algorithms, such as neural networks, as a function approximator to the Q-table. We briefly explain these concepts in this section.
