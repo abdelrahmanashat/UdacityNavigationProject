@@ -148,13 +148,22 @@ The hyperparameters are:
 * Soft update parameter &tau;: `0.001`.
 
 ### Plot of Rewards
-For the environment to be solved, the average reward over 100 episodes must reach at least 13. The implementation provided here needed just `501 episodes` to be completed! The plot of rewards is shown in _fig.4_.
+For the environment to be solved, the average reward over 100 episodes must reach at least 13. The implementation provided here needed just `501 episodes` to be completed! The average score reached `13.04`. The plot of rewards is shown in _fig.4_.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/47497135/134100064-bfaaeedc-b14b-4a82-a426-55129f7b798e.png" alt="drawing" width="400"/>
 </p>
 <p align="center">
-  <em>Fig.4: Rewards Plot</em>
+  <em>Fig.4: Rewards Plot in 501 episodes</em>
+</p>
+
+Another run of `2000 episodes` gave an average score of `15.82`. The plot of rewards of this long run is shown in _fig.5_.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/47497135/134100605-7a0badc9-dac3-4e1e-baf6-f79e91e73d3d.png" alt="drawing" width="400"/>
+</p>
+<p align="center">
+  <em>Fig.5: Rewards Plot in 2000 episodes</em>
 </p>
 
 ### Ideas for Future Work
